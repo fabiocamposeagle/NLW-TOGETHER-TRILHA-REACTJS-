@@ -52,16 +52,16 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
       const { displayName, photoURL, uid } = result.user
 
       if (!displayName || !photoURL) {
-      throw new Error('Missing information from Google Account.')
-    }
+        throw new Error('Missing information from Google Account.')
+      }
 
-    setUser({
-      id: uid,
-      name: displayName,
-      avatar: photoURL
-    })
+      setUser({
+        id: uid,
+        name: displayName,
+        avatar: photoURL
+      })
+    }
   }
-}
 
   return (
     <AuthContext.Provider value={{ user, signInWithGoogle }}>

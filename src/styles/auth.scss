@@ -3,6 +3,10 @@
     align-items: stretch;
     height: 100vh;
   
+    &.dark {
+      background: #000000;
+    }  
+
     aside {
       flex: 7;
   
@@ -13,7 +17,7 @@
       flex-direction: column;
       justify-content: center;
       
-      padding: 120px 80px;
+      padding: 120px 30px;
   
       img {
         max-width: 320px;
@@ -42,7 +46,7 @@
       align-items: center;
       justify-content: center;
     }
-  
+
     .main-content {
       display: flex;
       flex-direction: column;

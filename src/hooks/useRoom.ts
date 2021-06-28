@@ -12,7 +12,7 @@ type FirebaseQuestions = Record<string, {
   isAnswered: boolean;
   isHighlighted: boolean;
   likes: Record<string, {
-    authorId: string;
+  authorId: string;
   }>
 }>
 
