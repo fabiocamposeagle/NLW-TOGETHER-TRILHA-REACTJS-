@@ -39,7 +39,8 @@ yarn start
 
 ### Aplicação desenvolvida
 
-![1](.github/Login.png)
+![1](![smartmockups_kqe1rn69](https://user-images.githubusercontent.com/62512557/123570469-a3edb000-d79e-11eb-9742-cc1d39435be9.png)
+
 ---
 ![2](.github/Home.png)
 ---
