@@ -5,4 +5,7 @@ export function useTheme() {
   const value = useContext(ThemeContext)
 
   return value;
+
 }
+console.log('value')
+

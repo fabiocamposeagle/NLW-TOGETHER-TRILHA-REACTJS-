@@ -6,6 +6,18 @@
   color: #FFF;
   padding: 0 32px;
 
+  &.light {
+    header {
+      button {
+        background: #46386d;
+        svg path {
+          stroke: #fff;
+          fill: #fff;
+        }
+      }
+    }
+  }
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -27,4 +39,5 @@
     opacity: 0.6;
     cursor: not-allowed;
   }
+
 }

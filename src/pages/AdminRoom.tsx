@@ -1,3 +1,4 @@
+import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import { useHistory, useParams } from 'react-router-dom'
 
 import logoImg from '../assets/images/logo.svg';
@@ -13,6 +14,8 @@ import { useRoom } from '../hooks/useRoom';
 import { database } from '../services/firebase';
 
 import '../styles/room.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useState } from 'react';
 
 type RoomParams = {
   id: string;
@@ -25,6 +28,12 @@ export function AdminRoom() {
   const roomId = params.id;
 
   const { title, questions } = useRoom(roomId)
+  const [icon, setIcon] = useState(faSun)
+
+  function changeIcon() {
+    toggleTheme();
+    icon === faSun ? setIcon(faMoon) : setIcon(faSun);
+  }
 
   async function handleEndRoom() {
     await database.ref(`rooms/${roomId}`).update({
@@ -60,6 +69,9 @@ export function AdminRoom() {
           <div>
             <RoomCode code={roomId} />
             <Button isOutlined onClick={handleEndRoom}>Encerrar sala</Button>
+              <button onClick={changeIcon} style={{backgroundColor: 'color'}}>
+              <FontAwesomeIcon icon={icon}/>
+            </button>
           </div>
         </div>
       </header>
@@ -110,3 +122,9 @@ export function AdminRoom() {
     </div>
   );
 }
+
+
+function toggleTheme() {
+  throw new Error('Function not implemented.');
+}
+

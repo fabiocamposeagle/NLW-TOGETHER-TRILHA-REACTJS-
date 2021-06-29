@@ -1,3 +1,4 @@
+import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import { FormEvent, useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 
@@ -9,11 +10,19 @@ import { database } from '../services/firebase';
 import { useAuth } from '../hooks/useAuth';
 
 import '../styles/auth.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 export function NewRoom() {
   const { user } = useAuth()
   const history = useHistory()
   const [newRoom, setNewRoom] = useState('');
+  const [icon, setIcon] = useState(faSun)
+
+  function changeIcon() {
+    toggleTheme();
+    icon === faSun ? setIcon(faMoon) : setIcon(faSun);
+  }
 
   async function handleCreateRoom(event: FormEvent) {
     event.preventDefault();
@@ -23,7 +32,6 @@ export function NewRoom() {
     }
 
     const roomRef = database.ref('rooms');
-
     const firebaseRoom = await roomRef.push({/* salvar uma informação dentro da lista eu uso push */
       title: newRoom,
       authorId: user?.id,
@@ -59,7 +67,16 @@ export function NewRoom() {
           </p>
         </div>
       </main>
+      <header>
+        <button onClick={changeIcon} style={{backgroundColor: 'color'}}>
+        <FontAwesomeIcon icon={icon}/>
+        </button>
+      </header>
     </div>
   )
+}
+
+function toggleTheme() {
+  throw new Error('Function not implemented.');
 }
 

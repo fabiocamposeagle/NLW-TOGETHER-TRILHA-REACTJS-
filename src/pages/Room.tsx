@@ -1,3 +1,6 @@
+import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FormEvent, useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom'
 
@@ -24,7 +27,13 @@ export function Room() {
   const [newQuestion, setNewQuestion] = useState('');
   const roomId = params.id;
   const { title, questions } = useRoom(roomId)
+  const [icon, setIcon] = useState(faSun)
 
+  function changeIcon() {
+    toggleTheme();
+    icon === faSun ? setIcon(faMoon) : setIcon(faSun);
+  }
+  
   useEffect(() => {
     if (!user) {
       history.push('/')
@@ -73,11 +82,14 @@ export function Room() {
         <div className="content">
           <img src={logoImg} alt="Letmeask" />
           <RoomCode code={roomId} />
+          <button onClick={changeIcon} style={{backgroundColor: 'color'}}>
+          <FontAwesomeIcon icon={icon}/>
+        </button>
         </div>
       </header>
 
       <main>
-        <div className="room-title">
+      <div className="room-title">
           <h1>Sala {title}</h1>
           {questions.length > 0 && <span>{questions.length} pergunta(s)</span>}
         </div>
@@ -132,4 +144,8 @@ export function Room() {
       </main>
     </div>
   );
+}
+
+function toggleTheme() {
+  throw new Error('Function not implemented.');
 }

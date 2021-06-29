@@ -8,7 +8,7 @@ type ThemeContextProviderProps = {
 
 type ThemeContextType = {
   theme: Theme;
-  toggleTheme: () => void; /*  Função para alternar o tema */
+  toggleTheme: () => void; /*  Função para alternar  tema */
 }
 
 export const ThemeContext = createContext({} as ThemeContextType);

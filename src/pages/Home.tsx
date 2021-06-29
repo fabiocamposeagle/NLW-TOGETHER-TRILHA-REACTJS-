@@ -1,3 +1,5 @@
+import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FormEvent, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import googleIconImg from '../assets/images/google-icon.svg';
@@ -13,10 +15,15 @@ export function Home() {
 	const history = useHistory();
 	const { user, signInWithGoogle } = useAuth();
 	const [roomCode, setRoomCode] = useState('');
-
 	const { theme, toggleTheme } = useTheme();
+  const [icon, setIcon] = useState(faSun)
+  
+  function changeIcon() {
+    toggleTheme();
+    icon === faSun ? setIcon(faMoon) : setIcon(faSun);
+  }
 
-	async function handleCreateRoom() {
+  async function handleCreateRoom() {
 		if (!user) {
 			await signInWithGoogle();
 		}
@@ -58,10 +65,10 @@ export function Home() {
 			</aside>
 			<main>
 				<div className='main-content'>
-					<button onClick={toggleTheme}>Toggle</button>
-
+        
 					{/* <img src={logoImg} alt="Letmeask" /> */}
 					<Logo />
+          
 					<button onClick={handleCreateRoom} className='create-room'>
 						<img src={googleIconImg} alt='Logo do Google' />
 						Crie sua sala com o Google
@@ -72,7 +79,7 @@ export function Home() {
 							type='text'
 							placeholder='Digite o código da sala'
 							onChange={(event) =>
-								setRoomCode(event.target.value)
+							setRoomCode(event.target.value)
 							}
 							value={roomCode}
 						/>
@@ -80,6 +87,11 @@ export function Home() {
 					</form>
 				</div>
 			</main>
+      <header> 
+        <button onClick={changeIcon} style={{backgroundColor: 'color'}}>
+          <FontAwesomeIcon icon={icon}/>
+        </button>
+      </header>
 		</div>
 	);
 }
